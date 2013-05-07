@@ -5,10 +5,9 @@
  * 
  */
 
-#include <18F8722.h>
-#fuses H4,NOWDT,NOPROTECT,NOLVP  //these overwrite the Configuration Bits
-#use delay(clock = 40000000)
-#use rs232(baud=115200,xmit=PIN_C6,rcv=PIN_C7)	
+// This function needs to be called before anything in this module
+// will work.
+void setup_glove_input();
 
 // Finger definitions
 #define INP_OPEN   0x00
@@ -25,6 +24,7 @@ unsigned int8 get_input(void);
 // Return the player1 and player2 inputs in separate fields
 unsigned void get_input(unsigned int8 *p1, unsigned int8 *p2)
 
+/* MIGHT NEED OWN MODULE */
 // Gesture definitions are a combination of fingers
 #define GST_PALM   INP_OPEN
 #define GST_OKAY   INP_INDEX

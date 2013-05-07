@@ -17,7 +17,13 @@
 #define P2_OFFSET 1
 
 // Input port (file register) to read from..
-#define input_port() input_j()
+#define IPORT j
+#define input_port() input_ ## IPORT ## ()
+#define set_inp_tris(v) set_tris_ ## j ## (v)	//all input
+
+void setup_glove_input() {
+	set_inp_tris(0xFF);
+}
 
 // Return the value present on the input file
 // register at the time of the call..
