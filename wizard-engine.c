@@ -7,12 +7,15 @@
 #include "wizard-engine.h"	
 
 // Include the glove input definitions..
-#include "glove-input.h"
+#include "spells.h"
 
 
 void launch_wizard() {
-	setup_glove_input();
 	setup_game_clock();
-	
+
+	wizard_loop();
 }
-	
+
+void setup_game_clock() {
+
+}
