@@ -4,11 +4,6 @@
  * 
  */
 
-// Input port (file register) to read from..
-#define IPORT d
-#define input_port() input_ ## IPORT ## ()
-#define set_inp_tris(v) set_tris_ ## IPORT ## (v)	//all input
-
 // This function needs to be called before anything in this module
 // will work.
 void setup_glove_input();

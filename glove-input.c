@@ -7,6 +7,11 @@
 #include "glove-input.h"
 #include <18F8722.h>
 
+// Input port (file register) to read from..
+#define IPORT d
+#define input_port() input_ ## IPORT ## ()
+#define set_inp_tris(v) set_tris_ ## IPORT ## (v)
+
 // Bits of input for each glove..
 #define P_WIDTH 4
 
