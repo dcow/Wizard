@@ -1,9 +1,13 @@
-
 /*
  * WIZARD Glove Input Module
  * Author: David Cowden
  * 
  */
+
+// Input port (file register) to read from..
+#define IPORT d
+#define input_port() input_ ## IPORT ## ()
+#define set_inp_tris(v) set_tris_ ## IPORT ## (v)	//all input
 
 // This function needs to be called before anything in this module
 // will work.
@@ -16,15 +20,6 @@ void setup_glove_input();
 #define INP_RING   0x04
 #define INP_PINKY  0x08
 
-// Return the value from the input bus.
-// Player 1 is the lower order 4 bits,
-// Player 2 is the higher order 4 bits.
-unsigned int8 get_input(void);
-
-// Return the player1 and player2 inputs in separate fields
-unsigned void get_input(unsigned int8 *p1, unsigned int8 *p2)
-
-/* MIGHT NEED OWN MODULE */
 // Gesture definitions are a combination of fingers
 #define GST_PALM   INP_OPEN
 #define GST_OKAY   INP_INDEX
@@ -34,3 +29,17 @@ unsigned void get_input(unsigned int8 *p1, unsigned int8 *p2)
 #define GST_TEA    INP_INDEX | INP_MIDDLE | INP_RING
 #define GST_FIST   INP_INDEX | INP_MIDDLE | INP_RING | INP_PINKY
 
+// A file register read operation is executed each time an
+// 'input' function is called.
+
+// Return the value from the input bus.
+// Player 1 is the lower order 4 bits,
+// Player 2 is the higher order 4 bits.
+unsigned int8 get_input(void);
+
+// Return the player1 and player2 inputs in separate fields
+void get_input(unsigned int8 *p1, unsigned int8 *p2);
+
+// Return the value of player one or player two's input guesture.
+unsigned int8 get_p1_input(void);
+unsigned int8 get_p2_input(void);

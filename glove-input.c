@@ -16,11 +16,6 @@
 #define P1_OFFSET 0
 #define P2_OFFSET 1
 
-// Input port (file register) to read from..
-#define IPORT j
-#define input_port() input_ ## IPORT ## ()
-#define set_inp_tris(v) set_tris_ ## j ## (v)	//all input
-
 void setup_glove_input() {
 	set_inp_tris(0xFF);
 }
@@ -36,4 +31,16 @@ unsigned void get_input(unsigned int8 *p1, unsigned int8 *p2) {
 	unsigned int8 inp = get_input();
 	*p1 = (inp & P1_MASK) >> (P1_OFFSET * P_WIDTH);
 	*p2 = (inp & P2_MASK) >> (P2_OFFSET * P_WIDTH);
+}
+
+// return the value of player one's input gesture
+unsigned int8 get_p1_input(void) {
+	unsigned int8 inp = get_input();
+	return (inp & P1_MASK) >> (P1_OFFSET * P_WIDTH);
+}
+
+// return the value of player two's input gesture
+unsigned int8 get_p2_input(void) {
+	unsigned int8 inp = get_input();
+	return (inp & P2_MASK) >> (P2_OFFSET * P_WIDTH);
 }
